@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #ff00ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #800080;
+    border-radius: 5px;
+    box-shadow: 10px 20px 25px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    max-width: 100%;
+    width: 700px;
+    color: white;
+}
+
+.header {
+    border-bottom: 1px solid #f0f0f0;
+    background-color: gray;
+    padding: 5px 10px;
+}
+
+.header h2 {
+    text-align: center;
+    color: black;
+}
+
+.form {
+    padding: 5px 10px;
+}
+
+.form-control {
+    margin-bottom: 10px;
+    padding: 5px;
+    position: relative;
+}
+.form-control-one{
+ display: inline-block;
+}
+.form-control-two{
+    margin-top: 20px;    
+}
+.form-control-three{
+    margin-top: 20px;
+    
+}
+.form-control-one small{
+  color: red;  
+  visibility: hidden;  
+}
+
+.form-control label {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.form-control input {
+    border: 2px solid #f0f0f0;
+    font-size: 14px;
+    display: block;
+    border-radius: 4px;
+    padding: 5px;
+    width: 100%;
+}
+
+.form-control input:focus {
+    outline: none;
+    border-color: #777;
+}
+
+.form-control.success input {
+    border-color: green;
+}
+.form-control.error input {
+    border-color: red;
+}
+
+.form-control i {
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    visibility: hidden;
+}
+
+.form-control.success i.ion-ios-checkmark {
+    color: green;
+    visibility: visible;
+}
+
+.form-control.error i.ion-android-alert {
+    color: red;
+    visibility: visible;
+}
+
+.form-control small {
+    color: red;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    visibility: hidden;
+}
+
+.form-control.error small {
+    color: red;
+    visibility: visible;
+}
+.form-control-one small{
+    color: red;
+    visibility: hidden;
+}
+
+.form button {
+    padding: 10px 15px;
+    outline: none;
+    width: 50%;    
+    border-radius: 25px;
+    font-size: 20px;
+    background-color: red;
+    color: white;
+    text-align: center;
+    margin: auto;
+    box-shadow: 20px 30px 35px rgba(rgb(83, 78, 78));
+    margin-left: 130px;  
+    cursor: pointer; 
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.form button:hover{
+    background-color: green;
+    color: black;
+}

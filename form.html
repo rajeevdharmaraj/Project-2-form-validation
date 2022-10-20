@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+    />
+    <title>Registration form</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <h2>Registration form</h2>
+      </div>
+      <form class="form" id="form" name="form" action="post">
+        <div class="form-control">
+          <label for="userName">UserName:</label>
+          <input type="text" placeholder="your name" id="userName">
+          <i class="ion-ios-checkmark"></i>
+          <i class="ion-android-alert"></i>
+          <small>* Error Message</small>
+        </div>
+        <div class="form-control">
+          <label for="password">Password</label>
+          <input type="password" placeholder="password" id="password">
+          <i class="ion-ios-checkmark"></i>
+          <i class="ion-android-alert"></i>
+          <small>* Error Message</small>
+        </div>
+        <div class="form-control">          
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            placeholder="confirm_password"
+            id="confirmPassword"
+          />
+          <i class="ion-ios-checkmark"></i>
+          <i class="ion-android-alert"></i>
+          <small>* Error Message</small>        
+        </div>
+        <div class="form-control">
+          <label for="email">Email</label>
+          <input type="text" placeholder="ff@gmail.com" id="email">
+          <i class="ion-ios-checkmark"></i>
+          <i class="ion-android-alert"></i>
+          <small>* Error Message</small>
+        </div>
+        <div class="form-control-one">
+          <label>Gender: </label>                    
+          <input type="radio" name="gender" id="Gender" value="male"/>
+          <label for="male">Male</label>
+          <input type="radio" name="gender" id="Gender" value="female"/>
+          <label for="female">Female</label>          
+      </div>         
+         <div class="form-control">
+          <label for="phone">Phone no.</label>
+          <input type="text" id="phone" placeholder="phone number" autocomplete="off">
+          <i class="ion-ios-checkmark"></i>
+          <i class="ion-android-alert"></i>
+          <small>* Error Message</small>                         
+         </div>        
+          <div class="form-control-two">
+          <label>Languages Known</label>
+          <input type="checkbox" id="Tamil" value="Tamil">
+              <label style="margin-right: 75px;">Tamil</label>  
+              <input type="checkbox"  id="English" value="English">
+              <label style="margin-right: 75px;">English</label>
+              <input type="checkbox" id="Hindi" value="Hindi">
+              <label>Hindi</label>          
+          </div>
+         <div class="form-control-three">
+          <label>Country</label>
+          <select name="country" id="country">
+              <option value="0">Select</option>
+              <option value="1">India</option>
+              <option value="2">USA</option>
+              <option value="3">South Africa</option>
+          </select>
+         </div>        
+        <button>submit</button>
+      </form>
+    </div>
+    <script>
+      const form = document.getElementById("form");
+      const userName = document.getElementById("userName");
+      const email = document.getElementById("email");
+      const password = document.getElementById("password");
+      const confirmPassword = document.getElementById("confirmPassword");
+      const phone = document.getElementById("phone"); 
+      const country = document.getElementById("country");     
+         
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        checkInput(); 
+        radioValidation(); 
+        checkValidation();      
+      });
+
+      function checkInput() {
+        const userNameValue = userName.value.trim();
+        const emailValue = email.value.trim();
+        const passwordValue = password.value.trim();
+        const confirmPasswordValue = confirmPassword.value.trim();
+        const phoneValue=phone.value.trim();  
+          
+        if (userNameValue === '') {
+          setError(userName, 'UserName cannot be blank');
+        } else {
+          setSuccess(userName);
+        }
+
+        if (emailValue === '') {
+          setError(email, "email cannot be blank");
+        } else if (!isEmail(emailValue)) {
+          setError(email, "Not a valid EMail");
+        } else {
+          setSuccess(email);
+        }
+
+        if (passwordValue === '') {
+          setError(password, "password cannot be blank");
+        }else if(!isPsw(passwordValue)){
+          setError(password, "password should contain special char");
+        }
+        else{
+          setSuccess(password);
+        }
+
+        if (confirmPasswordValue === '') {
+          setError(confirmPassword, "confirmPassword cannot be blank");
+        } else if (passwordValue !== confirmPasswordValue) {
+          setError(confirmPassword, "confirmPassword does not match");
+        }else if(!isPsword(confirmPasswordValue)){
+          setError(confirmPassword, "password should contain special char");
+        } 
+        else {
+          setSuccess(confirmPassword);
+        }           
+
+        if(phoneValue ===''){
+          setError(phone, "phone number cannot be blank");
+        }        
+        else if(phoneValue.length!=10){
+          setError(phone, "Mobile number should be in 10 digit");
+          return false;
+        }        
+        else if(isNaN(phoneValue)){
+          setError(phone, "Should be in number only");          
+        }
+        else{
+          setSuccess(phone);
+        }                   
+                
+        const strUser = country.options[country.selectedIndex].value;
+        if(strUser==0)
+        {
+      alert("Please select a country");
+        }
+    
+      }
+        function setError(input, Message) {
+        const formcontrol = input.parentElement;
+        const small = formcontrol.querySelector("small");
+        formcontrol.className = "form-control error";
+        small.innerText = Message;
+      }
+        function setSuccess(input) {
+        const formcontrol = input.parentElement;
+        formcontrol.className = "form-control success";
+      }
+
+        function isEmail(email) {
+        return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+      }              
+      function isPsw(password){
+          return (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(\W|_)).{5,}$/.test(password));         
+      }
+
+        function isPsword(confirmPassword){
+          return (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(\W|_)).{5,}$/.test(confirmPassword)); 
+      }
+        function radioValidation(){
+        const gender = document.getElementsByName('gender');
+        const genValue = false;
+
+        for(var i=0; i<gender.length;i++){
+        if(gender[i].checked == true){
+        genValue = true;    
+        }
+        }
+        if(!genValue){
+        alert("Please Choose the gender");
+        return false;
+        }
+      }
+
+        function checkValidation(){
+        let valid = false;
+        if(document.getElementById("Tamil").checked){
+        valid = true;
+        }
+        else if(document.getElementById("English").checked){
+        valid = true;
+        }
+        else if(document.getElementById("Hindi").checked){
+        valid = true;
+        }          
+        else{
+        alert("atleast select one language");
+        return false;
+        }
+      }          
+     </script>
+  </body>
+</html>
+
